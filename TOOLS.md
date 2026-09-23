@@ -1,6 +1,6 @@
-# aramiworks Dev Tools Registry
+# cheunjm Dev Tools Registry
 
-Installed tools, bots, and GitHub Apps across the `aramiworks` workspace.
+Installed tools, bots, and GitHub Apps across the `cheunjm` workspace.
 
 | Tool | Type | Purpose | Repos | Status | Installed |
 |------|------|---------|-------|--------|-----------|
