@@ -26,9 +26,9 @@ on:
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN:
         required: true
-      CLAUDE_ARAMI_APP_ID:
+      OPENCLAW_BOT_APP_ID:
         required: true
-      CLAUDE_ARAMI_PRIVATE_KEY:
+      OPENCLAW_BOT_PRIVATE_KEY:
         required: true
       PKG_READ_TOKEN:
         required: false
@@ -75,9 +75,8 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v1
         with:
-          app-id: ${{ secrets.CLAUDE_ARAMI_APP_ID }}
-          private-key: ${{ secrets.CLAUDE_ARAMI_PRIVATE_KEY }}
-          owner: aramiworks
+          app-id: ${{ secrets.OPENCLAW_BOT_APP_ID }}
+          private-key: ${{ secrets.OPENCLAW_BOT_PRIVATE_KEY }}
 
       - name: Checkout PR branch
         uses: actions/checkout@v4
@@ -138,8 +137,8 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          git config user.name "claude-arami[bot]"
-          git config user.email "claude-arami[bot]@users.noreply.github.com"
+          git config user.name "arami-openclaw-bot[bot]"
+          git config user.email "arami-openclaw-bot[bot]@users.noreply.github.com"
           git add -A
           if git diff --cached --quiet; then
             echo "No formatting/lint changes needed"
@@ -148,7 +147,7 @@ jobs:
           fi
           git commit -m "style: auto-fix format/lint
 
-          Co-Authored-By: claude-arami[bot] <claude-arami[bot]@users.noreply.github.com>"
+          Co-Authored-By: arami-openclaw-bot[bot] <arami-openclaw-bot[bot]@users.noreply.github.com>"
           if git pull --rebase origin ${{ needs.resolve-pr.outputs.head_branch }}; then
             git push origin ${{ needs.resolve-pr.outputs.head_branch }}
             echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -247,8 +246,8 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v1
         with:
-          app-id: ${{ secrets.CLAUDE_ARAMI_APP_ID }}
-          private-key: ${{ secrets.CLAUDE_ARAMI_PRIVATE_KEY }}
+          app-id: ${{ secrets.OPENCLAW_BOT_APP_ID }}
+          private-key: ${{ secrets.OPENCLAW_BOT_PRIVATE_KEY }}
 
       - name: Run Claude Code
         if: >
@@ -259,7 +258,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ steps.app-token.outputs.token }}
-          allowed_bots: 'claude-arami'
+          allowed_bots: 'arami-openclaw-bot'
           claude_args: '--allowedTools "mcp__github,Edit,Read,Glob,Grep,Bash(npm test:*),Bash(npx:*),Bash(gh api:*),Bash(gh run view:*),Bash(git diff:*),Bash(git log:*),Bash(git show:*),Bash(git add:*),Bash(git commit:*),Bash(git push:*)"'
           prompt: |
             The following CI checks failed on PR #${{ needs.resolve-pr.outputs.pr_number }} in ${{ github.repository }}:
@@ -313,9 +312,8 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v1
         with:
-          app-id: ${{ secrets.CLAUDE_ARAMI_APP_ID }}
-          private-key: ${{ secrets.CLAUDE_ARAMI_PRIVATE_KEY }}
-          owner: aramiworks
+          app-id: ${{ secrets.OPENCLAW_BOT_APP_ID }}
+          private-key: ${{ secrets.OPENCLAW_BOT_PRIVATE_KEY }}
 
       - name: Checkout PR branch
         uses: actions/checkout@v4
@@ -464,8 +462,8 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          git config user.name "claude-arami[bot]"
-          git config user.email "claude-arami[bot]@users.noreply.github.com"
+          git config user.name "arami-openclaw-bot[bot]"
+          git config user.email "arami-openclaw-bot[bot]@users.noreply.github.com"
           git add "${{ steps.gen.outputs.file }}"
           if git diff --cached --quiet; then
             echo "Nothing to commit"
@@ -476,7 +474,7 @@ jobs:
           Packages: ${{ steps.gen.outputs.packages }}
           Bump: ${{ steps.gen.outputs.bump }}
 
-          Co-Authored-By: claude-arami[bot] <claude-arami[bot]@users.noreply.github.com>"
+          Co-Authored-By: arami-openclaw-bot[bot] <arami-openclaw-bot[bot]@users.noreply.github.com>"
           if git pull --rebase origin "${{ needs.resolve-pr.outputs.head_branch }}"; then
             git push origin "${{ needs.resolve-pr.outputs.head_branch }}"
             echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -506,8 +504,8 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v1
         with:
-          app-id: ${{ secrets.CLAUDE_ARAMI_APP_ID }}
-          private-key: ${{ secrets.CLAUDE_ARAMI_PRIVATE_KEY }}
+          app-id: ${{ secrets.OPENCLAW_BOT_APP_ID }}
+          private-key: ${{ secrets.OPENCLAW_BOT_PRIVATE_KEY }}
 
       - name: Wait for mergeable status to settle
         run: sleep 30

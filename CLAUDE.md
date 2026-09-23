@@ -1,6 +1,6 @@
 # .github
 
-Default GitHub templates and reusable workflows for all `aramiworks` repos.
+Default GitHub templates and reusable workflows for all `cheunjm` repos.
 
 ## What belongs here
 
@@ -12,13 +12,13 @@ Default GitHub templates and reusable workflows for all `aramiworks` repos.
 
 ## What does NOT belong here
 
-- Coding conventions, standards, or style guides → `aramiworks/conventions`
+- Coding conventions, standards, or style guides → `cheunjm/conventions`
 - Repo-specific workflows or configs → the repo itself
 - Secrets, credentials, or environment values → 1Password
 
 ## When to update this repo
 
-When working on any `aramiworks` repo and you notice:
+When working on any `cheunjm` repo and you notice:
 - A GitHub workflow being duplicated across repos — extract it here as a reusable workflow
 - An issue or PR template improvement that should apply everywhere
 - A new GitHub App or tool installed — update TOOLS.md
@@ -31,7 +31,7 @@ After implementing changes, always run the test/verification steps from the plan
 
 ## Reusable Workflows
 
-Other repos call these via `uses: aramiworks/.github/.github/workflows/{name}.yml@main`. Available:
+Other repos call these via `uses: cheunjm/.github/.github/workflows/{name}.yml@main`. Available:
 
 | Workflow | Trigger |
 |----------|---------|
